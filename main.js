@@ -15,10 +15,8 @@ webServer.listen(8080);
 webServer.use(express.static(__dirname));
 
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
- 
-var producto = mongoose.model("Producto", productosSchema);
+webServer.use(bodyParser.json());
+webServer.use(bodyParser.urlencoded({ extended: false }));
 
 webServer.get('/lista', function (req, res) {
     var result = ProductosDAO.findAll();
@@ -31,7 +29,7 @@ webServer.post('/addname', function (req, res) {
 });
 
 webServer.get('*', function (req, res) {
-    res.redirect('/style/html');
+    res.redirect('/public');
 });
 
 
