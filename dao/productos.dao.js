@@ -1,4 +1,5 @@
 var productos = require('../model/productos');
+var producto = mongoose.model("Producto", productosSchema);
 
 var ProductosDAO = {};
 
@@ -14,7 +15,13 @@ ProductosDAO.findAll = function () {
         console.error(err);
     })
 }
-ProductosDAO.saveOne = function (productData) {
-
+ProductosDAO.saveOne = function (productName) {
+        //var obj={nombre:"Huevos"}
+        var myData = new Producto(productName);
+        productos.save(myData, function(err, res) {
+            if (err) throw err;
+            console.log("1 document inserted");
+            productos.close();
+        });
 }
 module.exports = ProductosDAO;

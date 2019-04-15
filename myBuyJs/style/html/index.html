@@ -5,17 +5,15 @@
     <title>Hello World!</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    Estamos usando node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>.
+    <h1>MyBuy</h1>
     <form action="/lista" method="get">
-      <input type="text" class="form-control" name="text">
-      <button class="btn btn-default" type="submit">Listar</button>
-  </form>
-  <form action="/Add" method="post">
-    <label>Enter Your Product</label><br>
-    <input type="text" name="Nombre" class="form-control" name="text">
-    <input type="submit" value="Add product">
-  </form>
+      <label>Show Your Product</label>
+      <button class="btn btn-default" type="submit">List</button>
+    </form>
+    <form action="/addname" method="post">
+      <label>Add Your Product</label>
+      <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Name">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
   </body>
 </html>
