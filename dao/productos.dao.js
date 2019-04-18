@@ -5,6 +5,11 @@ var ProductosDAO = {};
 ProductosDAO.findAll = function () {
     return Productos.find();
 }
+
+ProductosDAO.findIdAndRemove = function (productId) {
+    return Productos.findByIdAndRemove(productId);
+}
+
 ProductosDAO.saveOne = function (productName, productPrice) {
     var newProduct = new Productos({ nombre: productName, precio: productPrice });
     newProduct.save(function (err) {
@@ -12,4 +17,5 @@ ProductosDAO.saveOne = function (productName, productPrice) {
         console.log('Saved');
     });
 }
+
 module.exports = ProductosDAO;
