@@ -14,16 +14,17 @@ var webServer = express();
 webServer.listen(8080);
 webServer.use(express.static(__dirname));
 
-//var bodyParser = require('body-parser');
-//webServer.use(bodyParser.json());
-//webServer.use(bodyParser.urlencoded({ extended: false }));
+var bodyParser = require('body-parser');
+webServer.use(bodyParser.json());
+webServer.use(bodyParser.urlencoded({ extended: false }));
 
 webServer.get('/lista', function (req, res) {
     ProductosDAO.findAll().then(producto => {
         var responseData = "";
         for (var i = 0; i < producto.length; i++) {
             var productNombre = producto[i]._doc.nombre;
-            responseData += `<p>${productNombre}</p>`;
+            var productPrice = producto[i]._doc.precio;
+            responseData += `<p>${productNombre} ${productPrice}</p>`;
         }
         res.send(responseData);
     }).catch(err => {
@@ -33,7 +34,8 @@ webServer.get('/lista', function (req, res) {
 
 webServer.post('/addname', function (req, res) {
     var productName = req.body.nombre;
-    ProductosDAO.saveOne(productName);
+    var productPrice = req.body.precio;
+    ProductosDAO.saveOne(productName, productPrice);
     res.end();
 });
 
